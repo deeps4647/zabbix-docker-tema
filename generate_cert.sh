@@ -24,7 +24,7 @@ openssl req -x509 -nodes -days 18250 \
   -newkey rsa:2048 \
   -keyout "$TARGET_DIR/.ZBX_DB_KEY_FILE" \
   -out "$TARGET_DIR/.ZBX_DB_CERT_FILE" \
-  -config "$TARGET_DIR/openssl.cnf" \
+  -config "openssl.cnf" \
   -extensions v3_req
 
 # Копируем сертификат как CA
