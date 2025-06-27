@@ -12,18 +12,18 @@ services:
   labels:
    com.zabbix.os: "${ALPINE_OS_TAG}"
 
- proxy-db-init:
-  extends:
-   file: compose_zabbix_components.yaml
-   service: proxy-mysql-db-init
-  image: "${ZABBIX_PROXY_MYSQL_IMAGE}:${ZABBIX_ALPINE_IMAGE_TAG}${ZABBIX_IMAGE_TAG_POSTFIX}"
-  volumes:
-   - /etc/timezone:/etc/timezone:ro
-  depends_on:
-   mysql-server:
-    condition: service_started
-  labels:
-   com.zabbix.os: "${ALPINE_OS_TAG}"
+ # proxy-db-init:
+ #  extends:
+ #   file: compose_zabbix_components.yaml
+ #   service: proxy-mysql-db-init
+ #  image: "${ZABBIX_PROXY_MYSQL_IMAGE}:${ZABBIX_ALPINE_IMAGE_TAG}${ZABBIX_IMAGE_TAG_POSTFIX}"
+ #  volumes:
+ #   - /etc/timezone:/etc/timezone:ro
+ #  depends_on:
+ #   mysql-server:
+ #    condition: service_started
+ #  labels:
+ #   com.zabbix.os: "${ALPINE_OS_TAG}"
 
  zabbix-server:
   extends:
@@ -38,41 +38,41 @@ services:
   labels:
    com.zabbix.os: "${ALPINE_OS_TAG}"
 
- zabbix-proxy-sqlite3:
-  extends:
-   file: compose_zabbix_components.yaml
-   service: proxy-sqlite3
-  image: "${ZABBIX_PROXY_SQLITE3_IMAGE}:${ZABBIX_ALPINE_IMAGE_TAG}${ZABBIX_IMAGE_TAG_POSTFIX}"
-  volumes:
-   - /etc/timezone:/etc/timezone:ro
-  labels:
-   com.zabbix.os: "${ALPINE_OS_TAG}"
+ # zabbix-proxy-sqlite3:
+ #  extends:
+ #   file: compose_zabbix_components.yaml
+ #   service: proxy-sqlite3
+ #  image: "${ZABBIX_PROXY_SQLITE3_IMAGE}:${ZABBIX_ALPINE_IMAGE_TAG}${ZABBIX_IMAGE_TAG_POSTFIX}"
+ #  volumes:
+ #   - /etc/timezone:/etc/timezone:ro
+ #  labels:
+ #   com.zabbix.os: "${ALPINE_OS_TAG}"
 
- zabbix-proxy-mysql:
-  extends:
-   file: compose_zabbix_components.yaml
-   service: proxy-mysql
-  image: "${ZABBIX_PROXY_MYSQL_IMAGE}:${ZABBIX_ALPINE_IMAGE_TAG}${ZABBIX_IMAGE_TAG_POSTFIX}"
-  volumes:
-   - /etc/timezone:/etc/timezone:ro
-  depends_on:
-   proxy-db-init:
-    condition: service_completed_successfully
-  labels:
-   com.zabbix.os: "${ALPINE_OS_TAG}"
+ # zabbix-proxy-mysql:
+ #  extends:
+ #   file: compose_zabbix_components.yaml
+ #   service: proxy-mysql
+ #  image: "${ZABBIX_PROXY_MYSQL_IMAGE}:${ZABBIX_ALPINE_IMAGE_TAG}${ZABBIX_IMAGE_TAG_POSTFIX}"
+ #  volumes:
+ #   - /etc/timezone:/etc/timezone:ro
+ #  depends_on:
+ #   proxy-db-init:
+ #    condition: service_completed_successfully
+ #  labels:
+ #   com.zabbix.os: "${ALPINE_OS_TAG}"
 
- zabbix-web-apache-pgsql:
-  extends:
-   file: compose_zabbix_components.yaml
-   service: web-apache-pgsql
-  image: "${ZABBIX_WEB_APACHE_PGSQL_IMAGE}:${ZABBIX_ALPINE_IMAGE_TAG}${ZABBIX_IMAGE_TAG_POSTFIX}"
-  volumes:
-   - /etc/timezone:/etc/timezone:ro
-  depends_on:
-   server-db-init:
-    condition: service_completed_successfully
-  labels:
-   com.zabbix.os: "${ALPINE_OS_TAG}"
+ # zabbix-web-apache-pgsql:
+ #  extends:
+ #   file: compose_zabbix_components.yaml
+ #   service: web-apache-pgsql
+ #  image: "${ZABBIX_WEB_APACHE_PGSQL_IMAGE}:${ZABBIX_ALPINE_IMAGE_TAG}${ZABBIX_IMAGE_TAG_POSTFIX}"
+ #  volumes:
+ #   - /etc/timezone:/etc/timezone:ro
+ #  depends_on:
+ #   server-db-init:
+ #    condition: service_completed_successfully
+ #  labels:
+ #   com.zabbix.os: "${ALPINE_OS_TAG}"
 
  zabbix-web-nginx-pgsql:
   extends:
@@ -97,21 +97,21 @@ services:
   labels:
    com.zabbix.os: "${ALPINE_OS_TAG}"
 
- zabbix-java-gateway:
-  extends:
-   file: compose_zabbix_components.yaml
-   service: java-gateway
-  image: "${ZABBIX_JAVA_GATEWAY_IMAGE}:${ZABBIX_ALPINE_IMAGE_TAG}${ZABBIX_IMAGE_TAG_POSTFIX}"
-  labels:
-   com.zabbix.os: "${ALPINE_OS_TAG}"
+# zabbix-java-gateway:
+#  extends:
+#   file: compose_zabbix_components.yaml
+#   service: java-gateway
+#  image: "${ZABBIX_JAVA_GATEWAY_IMAGE}:${ZABBIX_ALPINE_IMAGE_TAG}${ZABBIX_IMAGE_TAG_POSTFIX}"
+#  labels:
+#   com.zabbix.os: "${ALPINE_OS_TAG}"
 
- zabbix-snmptraps:
-  extends:
-   file: compose_zabbix_components.yaml
-   service: snmptraps
-  image: "${ZABBIX_SNMPTRAPS_IMAGE}:${ZABBIX_ALPINE_IMAGE_TAG}${ZABBIX_IMAGE_TAG_POSTFIX}"
-  labels:
-   com.zabbix.os: "${ALPINE_OS_TAG}"
+# zabbix-snmptraps:
+#  extends:
+#   file: compose_zabbix_components.yaml
+#   service: snmptraps
+#  image: "${ZABBIX_SNMPTRAPS_IMAGE}:${ZABBIX_ALPINE_IMAGE_TAG}${ZABBIX_IMAGE_TAG_POSTFIX}"
+#  labels:
+#   com.zabbix.os: "${ALPINE_OS_TAG}"
 
  zabbix-web-service:
   extends:
@@ -121,24 +121,24 @@ services:
   labels:
    com.zabbix.os: "${ALPINE_OS_TAG}"
 
- mysql-server:
-  profiles:
-   - all
-  extends:
-   file: compose_databases.yaml
-   service: mysql-server
+ # mysql-server:
+ #  profiles:
+ #   - all
+ #  extends:
+ #   file: compose_databases.yaml
+ #   service: mysql-server
 
  postgres-server:
   extends:
    file: compose_databases.yaml
    service: postgres-server
 
- db-data-mysql:
-  profiles:
-   - all
-  extends:
-   file: compose_databases.yaml
-   service: db-data-mysql
+ # db-data-mysql:
+ #  profiles:
+ #   - all
+ #  extends:
+ #   file: compose_databases.yaml
+ #   service: db-data-mysql
 
  db-data-pgsql:
   extends:
@@ -199,7 +199,7 @@ networks:
 volumes:
   snmptraps:
 #  mysql_socket:
-#  pgsql_socket:
+  pgsql_socket:
 
 secrets:
   MYSQL_USER:
