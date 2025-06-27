@@ -1,20 +1,25 @@
 # Игнорировать файлы macOS
 **.DS_Store
 
-# Переменные окружения
-.env
-.env*
-env_vars/
+# Папки с кастомными конфигами
 zbx_env/
 zbx_env*/
 
-# Секреты и сертификаты
+# Секретные сертификаты
 .*CERT_FILE
 .*KEY_FILE
 .*CA_FILE
 
-# Секреты в Docker
+# Docker secrets (Red Hat)
 Dockerfiles/*/rhel/secrets/*
 
-# Исходники, которые не нужны
+# Исходники 
 sources/*
+
+# Игнорировать конкретные файлы с секретами PostgreSQL и MySQL
+env_vars/.POSTGRES_PASSWORD
+env_vars/.POSTGRES_USER
+env_vars/.MYSQL_PASSWORD
+env_vars/.MYSQL_ROOT_PASSWORD
+env_vars/.MYSQL_ROOT_USER
+env_vars/.MYSQL_USER
