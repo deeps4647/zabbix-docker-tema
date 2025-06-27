@@ -23,5 +23,4 @@ env_vars/.MYSQL_PASSWORD
 env_vars/.MYSQL_ROOT_PASSWORD
 env_vars/.MYSQL_ROOT_USER
 env_vars/.MYSQL_USER
-env_vars/.POSTGRES_PASSWORD
-env_vars/.POSTGRES_USER
+
