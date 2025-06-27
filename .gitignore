@@ -1,8 +1,20 @@
+# Игнорировать файлы macOS
 **.DS_Store
+
+# Переменные окружения
+.env
+.env*
+env_vars/
 zbx_env/
 zbx_env*/
+
+# Секреты и сертификаты
 .*CERT_FILE
 .*KEY_FILE
 .*CA_FILE
+
+# Секреты в Docker
 Dockerfiles/*/rhel/secrets/*
+
+# Исходники, которые не нужны
 sources/*
