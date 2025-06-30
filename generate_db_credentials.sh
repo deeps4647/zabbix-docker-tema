@@ -41,8 +41,8 @@ printf "%s" "$password" > "$TARGET_DIR/$PASSWORD_FILE"
 printf "%s" "$username" > "$TARGET_DIR/$USER_FILE"
 
 # Устанавливаем права
-chmod 600 "$TARGET_DIR/$PASSWORD_FILE"
-chmod 600 "$TARGET_DIR/$USER_FILE"
+chmod 664 "$TARGET_DIR/$PASSWORD_FILE"
+chmod 664 "$TARGET_DIR/$USER_FILE"
 
 echo ">>> 📋 Проверка созданных файлов:"
 ls -l "$TARGET_DIR/$PASSWORD_FILE" "$TARGET_DIR/$USER_FILE"
